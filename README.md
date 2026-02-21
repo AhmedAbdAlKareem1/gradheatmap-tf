@@ -106,7 +106,8 @@ heat.save_heat_img("result.jpg", overlay)
 Output:
 heatmap/
 └── result.jpg
-
+![Grad-CAM Example](Heatmap_001_img2.jpg)
+![Grad-CAM Example](Heatmap_001_img5.jpg)
 🧠 How It Works
 
 Loads model with compile=False to avoid custom loss conflicts.
@@ -155,3 +156,4 @@ Model must contain at least one Conv2D or DepthwiseConv2D layer.
 
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
