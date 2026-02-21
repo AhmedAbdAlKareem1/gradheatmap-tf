@@ -112,27 +112,20 @@ heatmap/
   <img src="heatmap3.jpg" width="300">
 </p>
 
-Detected Model : mobilenetv2_1.00_224
+    terminal OutPut 
+    
+Detected Model : vgg16
 
 Image Size = (224, 224)
 
-Using mobilenetv2_1.00_224 specific preprocessing.
+Using vgg16 specific preprocessing.
 
-Layer Name : Conv_1
+Layer Name : block5_conv3
 
-Class: 2 (Birman)
+Class: 0 Cat  Confidence: 100.00%
 
-Confidence: 65.53%
+Successfully saved heatmap to: heatmap\heatmap3.jpg
 
-Successfully saved heatmap to: heatmap\Heatmap_001_img2.jpg
-
-Detected Model : mobilenetv2_1.00_224
-Image Size = (224, 224)
-Using mobilenetv2_1.00_224 specific preprocessing.
-Layer Name : Conv_1
-Class: 14 (basset_hound)
-Confidence: 96.92%
-Successfully saved heatmap to: heatmap\Heatmap_003_img4.jpg
 🧠 How It Works
 
 Loads model with compile=False to avoid custom loss conflicts.
@@ -181,6 +174,7 @@ Model must contain at least one Conv2D or DepthwiseConv2D layer.
 
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
 
 
 
