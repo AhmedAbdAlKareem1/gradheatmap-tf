@@ -88,8 +88,10 @@ pip install git+https://github.com/AhmedAbdAlKareem1/gradheatmap-tf.git
 ⚡ Quick Start
 from gradheatmap import HeatMap
 
-model_path = "your_model.keras"
-image_path = "test.jpg"
+model_path = "your_model"
+image_path = "your_img_path"
+
+#class_names Can be mulit class ['cat','dog','rabbit']
 
 class_names = ["cat", "dog"]
 
@@ -124,7 +126,7 @@ Layer Name : block5_conv3
 
 Class: 0 Cat  Confidence: 100.00%
 
-Successfully saved heatmap to: heatmap\heatmap3.jpg
+Successfully saved heatmap to: heatmap\heatmap.jpg
 
 🧠 How It Works
 
@@ -174,6 +176,7 @@ Model must contain at least one Conv2D or DepthwiseConv2D layer.
 
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
 
 
 
