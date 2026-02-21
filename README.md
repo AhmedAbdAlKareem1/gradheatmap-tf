@@ -87,6 +87,24 @@ pip install git+https://github.com/AhmedAbdAlKareem1/gradheatmap-tf.git
 
 ⚡ Quick Start
 
+<pre> ```from gradheatmap import HeatMap
+
+model_path = "your_model_path"
+image_path = "your_image_path"
+
+# class_names can be multi-class like ['cat', 'dog', 'rabbit']
+class_names = ["cat", "dog"]
+
+heat = HeatMap(
+    model_path=model_path,
+    img_path=image_path,
+    class_names=class_names
+)
+
+overlay = heat.overlay_heatmap()
+
+heat.save_heat_img("result.jpg", overlay) ``` </pre>
+
 from gradheatmap import HeatMap
 
 model_path = "your_model"
@@ -186,6 +204,7 @@ Model must contain at least one Conv2D or DepthwiseConv2D layer.
 
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
 
 
 
