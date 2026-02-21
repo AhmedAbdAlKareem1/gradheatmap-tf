@@ -118,13 +118,19 @@ heatmap/
 
    ### 🖥 Terminal Output
 
+```markdown
+### Example Output
+
+<details>
+<summary>Click to expand terminal output</summary>
+
 ```bash
 Detected Model : vgg16
 Image Size = (224, 224)
 Using vgg16 specific preprocessing.
 Layer Name : block5_conv3
 Class: 0 Cat  Confidence: 100.00%
-Successfully saved heatmap to: heatmap\heatmap.jpg```
+Successfully saved heatmap to: heatmap\heatmap.jpg</details> ```
 
 🧠 How It Works
 
@@ -176,6 +182,7 @@ Model must contain at least one Conv2D or DepthwiseConv2D layer.
 
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
 
 
 
