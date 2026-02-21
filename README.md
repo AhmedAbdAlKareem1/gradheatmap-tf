@@ -162,11 +162,11 @@ It is designed to be model-agnostic.
 
 ⚠️ Requirements
 
-TensorFlow 2.x
+tensorflow>=2.10
 
-Numpy
+numpy<2
 
-OpenCV
+opencv-python>=4.7
 
 Model must contain at least one Conv2D or DepthwiseConv2D layer.
 
@@ -176,6 +176,7 @@ Model must contain at least one Conv2D or DepthwiseConv2D layer.
 
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
 
 
 
