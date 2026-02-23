@@ -9,9 +9,9 @@ class HeatMap:
     def __init__(self, model, img_path, class_names, target_class=None):
         # loads model with compile=false so we avoid custom loss / optimizer conflicts
         # since we only need it for inference (Grad-CAM), not training
-        # load model from a path
-        self.model = load_model(model, compile=False)
-        # if model is already loaded
+        
+
+        # if model is already loaded                                 # load model from a path
         self.model = model if isinstance(model, tf.keras.Model) else load_model(model, compile=False)
         # automatically detect if the loaded model contains a pre-trained backbone
         # (like vgg16, resnet50,...etc)
@@ -542,5 +542,6 @@ class HeatMap:
             print(f"Successfully saved heatmap to: {save_path}")
         except Exception as E:
             print(E)
+
 
 
