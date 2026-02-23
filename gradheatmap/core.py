@@ -217,7 +217,7 @@ class HeatMap:
 
                 # predict class using the model's predict logic
                 # (usually used when target_class is None)
-                pred_class = self.predict(preprocessed_image)
+                pred_class, pred_name, pred_conf, pred_probs = self.predict(preprocessed_image)
 
                 # compute the "loss" value we want to explain
                 # Grad-CAM needs a scalar score for the target class
