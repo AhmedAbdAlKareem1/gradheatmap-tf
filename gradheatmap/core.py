@@ -441,59 +441,48 @@ class HeatMap:
         print("No Convolution layer was found ")
         return None
 
+
     def predict(self, img):
         try:
-            # run forward pass in inference mode (training=False disables dropout/batchnorm updates)
-            # using self.model(img) instead of model.predict for better GradientTape compatibility
             preds = self.model(img, training=False).numpy()[0]
-
-            # check if model output is binary (single neuron with sigmoid)
-            # shape will be (1,) after removing batch dimension
             if preds.shape[-1] == 1:
-                # extract sigmoid score (probability of class 1)
                 score = float(preds[0])
+                idx = 1 if score >= 0.5 else 0
+                name = self.class_names[idx] if self.class_names else str(idx)
+                conf = score if idx == 1 else 1.0 - score
+                probs = {(self.class_names[0] if self.class_names else "0"): round(1 - score, 4),
+                         (self.class_names[1] if len(self.class_names) > 1 else "1"): round(score, 4)}
+                print(f"Class: {idx} {name}  Confidence: {conf * 100:.2f}%")
+            else:
+                idx = int(np.argmax(preds))
+                conf = float(preds[idx])
+                probs = {(self.class_names[i] if i < len(self.class_names) else str(i)): round(float(p), 4)
+                         for i, p in enumerate(preds)}
+                name = self.class_names[idx] if self.class_names and idx < len(self.class_names) else str(idx)
+                print(f"Class: {idx} ({name})")
+                print(f"Confidence: {conf * 100:.2f}%")
+            return idx, name, conf, probs
 
-                # apply threshold 0.5 to decide class
-                # >= 0.5 -> class 1
-                # < 0.5  -> class 0
-                class_index = 1 if score >= 0.5 else 0
-
-                # confidence depends on predicted class
-                # if predicted 1 -> confidence = score
-                # if predicted 0 -> confidence = 1 - score
-                confidence = score if class_index == 1 else (1.0 - score)
-
-                # get class name if provided
-                # otherwise fallback to class index as string
-                name = self.class_names[class_index] if self.class_names else str(class_index)
-
-                # print prediction result
-                print(f"Class: {class_index} {name}  Confidence: {confidence * 100:.2f}%")
-
-                # return predicted class index
-                return class_index
-
-            # multi-class case (softmax or logits output)
-            # output shape will be (num_classes,)
-            class_index = int(np.argmax(preds))
-
-            # confidence is probability of predicted class
-            confidence = float(preds[class_index])
-
-            # get class name if available
-            name = self.class_names[class_index] if self.class_names else str(class_index)
-
-            # print prediction result
-            print(f"Class: {class_index} ({name})")
-            print(f"Confidence: {confidence * 100:.2f}%")
-
-            # return predicted class index
-            return class_index
+            # if preds.shape[-1] == 1:
+            #     # Binary case
+            #     score = float(preds[0])
+            #     class_index = 1 if score >= 0.5 else 0
+            #     confidence = score if class_index == 1 else (1.0 - score)
+            #     name = self.class_names[class_index] if self.class_names else str(class_index)
+            #     print(f"Class: {class_index} {name}  Confidence: {confidence * 100:.2f}%")
+            #     return class_index
+            #
+            # # Multi-class case
+            # class_index = int(np.argmax(preds))
+            # confidence = float(preds[class_index])
+            # name = self.class_names[class_index] if self.class_names else str(class_index)
+            #
+            # print(f"Class: {class_index} ({name})")
+            # print(f"Confidence: {confidence * 100:.2f}%")
+            # return class_index
 
         except Exception as e:
             print(f"Predict Error: {e}")
-
-            # fallback return value (class 0)
             return 0
 
     def detect_backbone_submodel(self):
