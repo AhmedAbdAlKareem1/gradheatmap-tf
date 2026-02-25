@@ -1,3 +1,8 @@
 from .core import HeatMap
 
-__all__ = ["HeatMap"]
+try:
+    from .coreTorch import HeatMapPyTorch
+except Exception:
+    HeatMapPyTorch = None
+
+__all__ = ["HeatMaptensorflow", "HeatMapPyTorch"]
