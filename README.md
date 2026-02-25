@@ -59,7 +59,7 @@ heatmap/
 <img src="heatmap3.jpg" width="300">
 </p>
 Quick Start (PyTorch)
-Python
+bash```
 import torch
 import torch.nn as nn
 from torchvision import models
@@ -86,6 +86,7 @@ heat = HeatMapPyTorch(
 
 overlay = heat.overlay_heatmap(alpha=0.4)
 heat.save_heat_img("result_torch.jpg", overlay)
+```
 Terminal Output Example
 When running the generator, the library provides automated feedback on the model architecture:
 
@@ -109,4 +110,5 @@ PyTorch >= 1.x (Optional)
 
 License
 This project is licensed under the MIT License.
+
 
