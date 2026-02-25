@@ -68,22 +68,28 @@ import torch.nn as nn
 from torchvision import models
 from gradheatmap import HeatMapPyTorch
 
-def build_resnet50(num_classes=2):
-    m = models.resnet50(weights=None)
-    m.fc = nn.Linear(m.fc.in_features, num_classes)
-    return m
 
-# Load model and weights
+# Rebuild architecture
+def build_resnet50(num_classes=2):
+    model = models.resnet50(weights=None)
+    model.fc = nn.Linear(model.fc.in_features, num_classes)
+    return model
+
+
+# Load checkpoint
 ckpt = torch.load("resnet50_catdog_best.pth", map_location="cpu")
+
 model = build_resnet50(num_classes=2)
 model.load_state_dict(ckpt["model_state_dict"])
 model.eval()
 
+
+# Generate Grad-CAM
 heat = HeatMapPyTorch(
     model=model,
     img_path="image.jpg",
     class_names=ckpt.get("class_names", ["Cat", "Dog"]),
-    preprocess="resnet50",
+    preprocess="resnet50",        # enables ImageNet normalization
     image_size=(224, 224)
 )
 
@@ -114,6 +120,7 @@ PyTorch >= 1.x (Optional)
 
 License
 This project is licensed under the MIT License.
+
 
 
 
