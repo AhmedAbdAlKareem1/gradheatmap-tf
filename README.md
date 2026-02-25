@@ -1,11 +1,7 @@
 GradHeatmap
 GradHeatmap is a Python library designed to simplify the generation of Grad-CAM (Gradient-weighted Class Activation Mapping) heatmaps. It automates the process of backbone detection and layer identification for both TensorFlow/Keras and PyTorch models, removing the need for manual architecture inspection or hardcoded layer names.
 
-<p align="center">
-<img src="heatmap1.jpg" width="300">
-<img src="heatmap2.jpg" width="300">
-<img src="heatmap3.jpg" width="300">
-</p>
+
 
 Features
 Framework Agnostic: Unified support for TensorFlow/Keras (.keras, .h5) and PyTorch models.
@@ -25,12 +21,11 @@ Validation: Built-in safe output validation and fallback normalization.
 Installation
 Install the package directly from GitHub:
 
-Bash
+Bash```
 pip install git+https://github.com/AhmedAbdAlKareem1/gradheatmap.git
 Optional Extras
 To install dependencies for specific frameworks:
-
-Bash
+```Bash
 # For TensorFlow
 pip install "gradheatmap[tf]"
 
@@ -52,11 +47,17 @@ heat = HeatMap(
 
 overlay = heat.overlay_heatmap(alpha=0.4)
 heat.save_heat_img("result.jpg", overlay)
+```
 Project Structure Output:
 
 Plaintext
 heatmap/
 └── result.jpg
+<p align="center">
+<img src="heatmap1.jpg" width="300">
+<img src="heatmap2.jpg" width="300">
+<img src="heatmap3.jpg" width="300">
+</p>
 Quick Start (PyTorch)
 Python
 import torch
@@ -108,3 +109,4 @@ PyTorch >= 1.x (Optional)
 
 License
 This project is licensed under the MIT License.
+
