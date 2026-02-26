@@ -22,7 +22,7 @@ Installation
 Install the package directly from GitHub:
 
 ```
-pip install git+https://github.com/AhmedAbdAlKareem1/gradheatmap.git
+pip install gradheatmap
 ```
 Optional Extras
 To install dependencies for specific frameworks:
@@ -126,6 +126,7 @@ PyTorch >= 1.x (Optional)
 
 License
 This project is licensed under the MIT License.
+
 
 
 
